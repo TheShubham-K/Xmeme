@@ -1,6 +1,7 @@
 from django import forms
 from . models import memes
 
+# forms page to serialize the data from the database
 class memesForm(forms.ModelForm):
     class Meta:
         model = memes
