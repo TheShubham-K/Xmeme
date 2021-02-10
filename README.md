@@ -7,7 +7,7 @@
 The first thing to do is to clone the repository:
 
 ```sh
-$ git clone https://gitlab.crio.do/COHORT_ME_BUILDOUT_XMEME_ENROLL_1612436694845/theshubhamkumar01-me_buildout_xmeme.git
+$ git clone https://github.com/TheShubham-K/Xmeme.git
 $ cd crio_xmeme
 ```
 
