@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+import environ
+
+env = environ.Env()                           # new
+env.read_env(env_file='crio_xmeme/.env') 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,13 +24,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^-s_-8xo$zmow&&6yj6*u5$f$e@3x=m+49!$jd4#6e1f*s34ew'
+# SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOST')
+if ALLOWED_HOSTS_ENV:
+    ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
 
 # Application definition
 
@@ -39,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Xmeme',
     'rest_framework',
-    'crispy_forms'
+    'crispy_forms',
+    'environ'
 ]
 
 
@@ -80,13 +88,19 @@ WSGI_APPLICATION = 'crio_xmeme.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# POSTGRES_HOST = os.environ.get('POSTGRES_HOST',default="")
+# POSTGRES_DB = os.environ.get('POSTGRES_DB',default="")
+# POSTGRES_USER = os.environ.get('POSTGRES_USER',default="")
+# POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD',default="")
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'xmeme_rest_api',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '9521867295s',
-        'HOST': 'localhost'
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432
     }
 }
 
