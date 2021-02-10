@@ -1,6 +1,6 @@
 {% extends "Xmeme/base.html" %} {% load crispy_forms_tags %} {% block content %}
 <p>
-
+    <!-- Form page -->
     <form action="" method="post" autocomplete="off">
 
         {% csrf_token %} {{ form|crispy }}
