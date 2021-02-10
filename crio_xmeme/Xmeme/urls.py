@@ -3,8 +3,19 @@ from . import views
 
 urlpatterns = [
 
-    path('memes-form/', views.memes_form, name='memes_insert'), # get and post req. for insert operation.
-    path('memes/<int:id>/', views.memes_form, name='memes_update'), # get and post req. for update operation.
-    path('memes/', views.memes_List, name='memes_List'), # get req. to retrieve and display all records.
-    path('delete/<int:id>/',views.memes_delete,name='memes_delete') # post req. to delete a meme using it's id
+     # get and post req. for insert operation.
+    path('memes-form/', views.memes_form, name='memes_insert'),
+    
+    # get and post req. for update operation.
+    path('memes-update/<int:id>/', views.memes_form, name='memes_update'),
+
+    # get req. to retrieve and display all records.
+    path('memes/', views.memes_List, name='memes_List'), 
+
+    # to get the desired id field.
+    path('memes/<int:id>/', views.memes_json, name='meme_json'),    
+    
+    # post req. to delete a meme using it's id
+    path('delete/<int:id>/',views.memes_delete,name='memes_delete')
+
 ]
