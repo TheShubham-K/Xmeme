@@ -7,7 +7,7 @@
 The first thing to do is to clone the repository:
 
 ```sh
-$ git clone https://github.com/TheShubham-K/Xmeme.git
+$ git clone https://gitlab.crio.do/COHORT_ME_BUILDOUT_XMEME_ENROLL_1612436694845/theshubhamkumar01-me_buildout_xmeme.git
 $ cd crio_xmeme
 ```
 
@@ -34,9 +34,21 @@ SECRET_KEY=your_secret_key
 ```
 
 
-
 Once `pip` has finished downloading the dependencies and finished setting .env file :
-make sure that you have docker installed in your local machine and it's running. 
+make sure that you have docker installed in your local machine and it's running and also install chocolatey to run `make` command for windows.
+
+Link to install chocolatey packages.
+```sh
+https://chocolatey.org/install
+``` 
+
+After installing chocolety packages install make packages using the following command in your power shell in adminstrative.
+
+```sh
+choco install make
+```
+
+`dont't forget to update your path variables for chocolatey packages`
 
 ```sh
 (env)$ cd crio_xmeme
