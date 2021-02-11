@@ -1,4 +1,5 @@
-from django.http.response import Http404, JsonResponse
+from django.http.response import Http404, HttpResponse, JsonResponse
+from django.core.serializers import serialize
 from django.shortcuts import render, redirect
 from .forms import memesForm
 from .models import memes
@@ -44,4 +45,13 @@ def memes_json(request, id):
         'meme_list': memes.objects.filter(pk=id),
     }
     return render(request, "Xmeme/memes_json.html", context)
-    
+
+# memes json for all id
+def memes_json_all(request):
+    # context = {
+    #     'meme_list': memes.objects.all(),
+    # }
+    # return render(request, "Xmeme/memes_json_all.html", context)
+    obj = memes.objects.all()
+    data = serialize("json", obj, fields=('id', 'name', 'captions', 'url'))
+    return HttpResponse(data, content_type="application/json")
