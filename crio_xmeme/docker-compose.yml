@@ -1,6 +1,6 @@
 version: "3.9"
   
-
+  
 x-service-volumes: &service-volumes
   - ./:/app/:rw,cached
 
@@ -24,7 +24,7 @@ services:
 
   website:
     image: xmeme:latest
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8081 
     volumes: *service-volumes
     environment: 
       - POSTGRES_DB=postgres
@@ -32,7 +32,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_HOST=postgres
     ports:
-      - "8000:8000"
+      - "8081:8081"
     depends_on:
       - db_migrate
 
