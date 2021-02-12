@@ -31,9 +31,9 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
 ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOST')
-if ALLOWED_HOSTS_ENV:
-    ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
+# ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOST')
+# if ALLOWED_HOSTS_ENV:
+#     ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
 
 # Application definition
 
@@ -101,7 +101,8 @@ DATABASES = {
 }
 
 
-import dj_database_url
+# import dj_database_url
+# db_from_env= dj_database_url.config(conn_max_age=999999)
 
 
 
