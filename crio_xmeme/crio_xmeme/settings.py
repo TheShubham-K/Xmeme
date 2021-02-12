@@ -14,7 +14,7 @@ from pathlib import Path
 import environ
 
 env = environ.Env()                           # new
-env.read_env(env_file='crio_xmeme/.env') 
+env.read_env(env_file='crio_xmeme/.env')      # new
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,10 +88,6 @@ WSGI_APPLICATION = 'crio_xmeme.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# POSTGRES_HOST = os.environ.get('POSTGRES_HOST',default="")
-# POSTGRES_DB = os.environ.get('POSTGRES_DB',default="")
-# POSTGRES_USER = os.environ.get('POSTGRES_USER',default="")
-# POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD',default="")
 
 DATABASES = {
     'default': {
@@ -103,6 +99,11 @@ DATABASES = {
         'PORT': 5432
     }
 }
+
+
+import dj_database_url
+
+
 
 
 # Password validation
