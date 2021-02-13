@@ -1,0 +1,17 @@
+build:
+  docker:
+    web: Dockerfile
+    worker: app/Dockerfile
+  config:
+    RAILS_ENV: development
+    FOO: bar
+# Run a command on each release 
+release:
+  command:
+    - python manage.py migrate
+  # Use the worker image to execute the release command
+  image: app
+# The process types and commands to run
+run:
+  web: bundle exec puma -C config/puma.rb
+  worker: python manage.py

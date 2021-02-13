@@ -1,4 +1,4 @@
-FROM python:3.7.7 as production
+FROM python:3.7.7
 
 ENV PYTHONUNBUFFERED=1
 WORKDIR /app/
@@ -17,17 +17,10 @@ RUN apt-get update && \
 COPY requirements.txt ./requirements.txt
 RUN pip install -r ./requirements.txt
 
-COPY manage.py ./manage.py
-COPY crio_xmeme ./crio_xmeme
-COPY Xmeme ./Xmeme
-
-EXPOSE 8081
-
-
-FROM production as development
-
-COPY requirements.txt ./requirements.txt
-RUN pip install -r ./requirements.txt
-
 COPY . .
 
+# EXPOSE 8081
+
+# CMD ["make compose-start"]
+
+CMD gunicorn crio_xmeme.wsgi:application --bind 0.0.0.0:$PORT 
